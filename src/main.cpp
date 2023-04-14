@@ -10,7 +10,5 @@ int main() {
     Vector3D u(1, 0, 0);
     Vector3D v(0, 1, 0);
 
-    printInnerProduct2Vectors('u', 'v',  u, v);
-
     return 0;
 }

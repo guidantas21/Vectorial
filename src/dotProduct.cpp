@@ -3,27 +3,27 @@
 #include <cmath>
 
 #include "include/utils.hpp"
-#include "include/innerProduct.hpp"
+#include "include/dotProduct.hpp"
 #include "include/vector3D.hpp"
 
 // u . v = ||u|| * ||v|| * cons(u,v)
-double getInnerProduct(double normA, double normB, double angleDegreesAB) {
+double dotProduct(double normA, double normB, double angleDegreesAB) {
     return normA * normB * std::round(std::cos(convertDegreesToRadians(angleDegreesAB)));
 }
 
 //u . v = (u1, u2, u3) . (v1, v2, v3) = (u1*v1, u2*v2, u3*v3)
-double getInnerProductVectors(Vector3D u, Vector3D v) {
+double dotProduct2Vectors(Vector3D u, Vector3D v) {
     return (u.x * v.x) + (u.y * v.y) + (u.z * v.y);
 }
 
 // ||u|| = sqrt(u . u) = sqrt(x² + y² + z²)
 double normalizeVector(Vector3D u) {
-    return std::sqrt(getInnerProductVectors(u, u));
+    return std::sqrt(dotProduct2Vectors(u, u));
 }
 
 // (u,v) = arccos(u . v / ||u||*||v|| )
-double calculateAngleVectors(double innerProductUV, double normU, double normV) {
-    return convertRadiansToDegrees(std::acos((double) innerProductUV / (normU * normV)));
+double calculateAngleVectors(double dotProductUV, double normU, double normV) {
+    return convertRadiansToDegrees(std::acos((double) dotProductUV / (normU * normV)));
 }
 
 // u = a / ||a|| = (x / ||a||, y / ||a||, z = ||a||)
@@ -39,7 +39,7 @@ Vector3D getUnitVector(Vector3D a, double normA) {
 
 // if u . v = 0 and u and v are perpendicular
 bool isPerpendicular(Vector3D u, Vector3D v) {
-    return getInnerProductVectors(u, v) == 0 ? true : false;
+    return dotProduct2Vectors(u, v) == 0 ? true : false;
 }
 
 // if ||u|| = 1, u is a unit vector
@@ -64,6 +64,6 @@ bool isOrthonormalBasis(Vector3D a, Vector3D b, Vector3D c) {
 }
 
 // proj (v,u) = (u . v) * u
-Vector3D getProjectionVector(Vector3D u, double innerProductUV) {
-    return u * innerProductUV;
+Vector3D getProjectionVector(Vector3D u, double dotProductUV) {
+    return u * dotProductUV;
 }

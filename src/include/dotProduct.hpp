@@ -1,5 +1,5 @@
-#ifndef INNERPRODUCT_H
-#define INNERPRODUCT_H
+#ifndef DOTPRODUCT_H
+#define DOTPRODUCT_H
 
 #include "vector3D.hpp"
 
